@@ -19,12 +19,12 @@ RUN apt-get update && apt-get install -y \
     && pecl install memcached redis xdebug \
     && docker-php-ext-enable memcached redis xdebug \
     && docker-php-ext-install pdo pdo_pgsql curl \
-    && pecl install raphf propro \
-    && docker-php-ext-enable raphf propro \
+#    && pecl install raphf propro \
+#    && docker-php-ext-enable raphf propro \
     && pecl install pecl_http \
-    && echo -e "extension=raphf.so\nextension=propro.so\nextension=http.so" > /usr/local/etc/php/conf.d/docker-php-ext-http.ini \
-    && rm -rf /usr/local/etc/php/conf.d/docker-php-ext-raphf.ini \
-    && rm -rf /usr/local/etc/php/conf.d/docker-php-ext-propro.ini \
+#    && echo -e "extension=raphf.so\nextension=propro.so\nextension=http.so" > /usr/local/etc/php/conf.d/docker-php-ext-http.ini \
+#    && rm -rf /usr/local/etc/php/conf.d/docker-php-ext-raphf.ini \
+#    && rm -rf /usr/local/etc/php/conf.d/docker-php-ext-propro.ini \
     && apt-get remove -y build-essential libmemcached-dev libz-dev \
     && apt-get autoremove -y \
     && apt-get clean \
@@ -38,6 +38,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone \
     && printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini \
     && "date"
+
+#ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
 EXPOSE 9000
 CMD ["php-fpm"]
