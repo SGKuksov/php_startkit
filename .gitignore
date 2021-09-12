@@ -3,9 +3,8 @@
 .DS_Store
 
 # Application
-web/app/composer.json
-web/app/composer.lock
-web/app/vendor/
+web/**/composer.lock
+web/**/vendor/
 web/**/doc/
 web/**/report/
 data/
