@@ -28,4 +28,5 @@ nbproject/
 logs/
 
 # SSL Certs
-etc/ssl/
+docker/ssl/*
+!docker/ssl/.gitkeep
